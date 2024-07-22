@@ -1,0 +1,7 @@
+{
+    "documentId":"f160a86b706e8f410c4f16c3",
+    "outputFormat":"urdf",
+    "packageName":"jumping_description/jumping",
+    "robotName":"jumping_robot",
+    "assemblyName":"jumping_assembly"
+}

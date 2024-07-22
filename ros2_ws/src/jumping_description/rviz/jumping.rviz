@@ -1,0 +1,30 @@
+<rviz>
+    <visualization_manager>
+        <global_options fixed_frame="world"/>
+    </visualization_manager>
+
+    <!-- Load the URDF model of the robot -->
+    <robot_description topic="/robot_description"/>
+
+    <!-- Add a Grid for better spatial understanding -->
+    <grid enabled="true"/>
+
+    <!-- Display the Robot Model -->
+    <robot_model name="Robot Model" />
+
+    <!-- Display TF Frames -->
+    <tf display_name="TF" />
+
+    <!-- Additional Displays (optional) -->
+    <!-- Example: Laser Scan -->
+    <!-- <LaserScan topic="/scan" name="Laser Scan" /> -->
+
+    <!-- Example: PointCloud2 -->
+    <!-- <PointCloud2 topic="/point_cloud_topic" name="PointCloud2" /> -->
+
+    <!-- Example: Camera Image -->
+    <!-- <Camera display_name="Camera" topic="/camera/image_raw" /> -->
+
+    <!-- Add more displays as needed for your specific sensors and data -->
+
+</rviz>

@@ -1,0 +1,1 @@
+/home/diana/Jumping_train/ros2_ws/build/jumping_description/ament_cmake_core/jumping_descriptionConfig-version.cmake

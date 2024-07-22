@@ -1,0 +1,71 @@
+<robot name="jumping_robot">
+<link name="body">
+<visual>
+<origin xyz="0.034049182146808520955 0.017409794483833861134 0.0029837952109667432304" rpy="-3.1415926353695713402 4.2370458770807958655e-30 3.1415926535897926719" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/pinion.stl"/>
+</geometry>
+<material name="pinion_material">
+<color rgba="0.98039215686274505668 0.71372549019607844922 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.034049182146808520955 0.017409794483833861134 0.0029837952109667432304" rpy="-3.1415926353695713402 4.2370458770807958655e-30 3.1415926535897926719" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/pinion.stl"/>
+</geometry>
+</collision>
+<visual>
+<origin xyz="0.046458225176851913885 0.022409794028328398896 -0.022016204880134407351" rpy="-3.1607046837131202829e-24 1.8220221997822253468e-08 1.570796326794896558" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/body.stl"/>
+</geometry>
+<material name="body_material">
+<color rgba="1 1 1 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.046458225176851913885 0.022409794028328398896 -0.022016204880134407351" rpy="-3.1607046837131202829e-24 1.8220221997822253468e-08 1.570796326794896558" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/body.stl"/>
+</geometry>
+</collision>
+<visual>
+<origin xyz="0.046458225176851906946 -0.017590205607267157817 -0.0020162041513255334405" rpy="-1.8220221997822256777e-08 -3.3033261573682402758e-24 -4.1633363423443385057e-16" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/r_wheel.stl"/>
+</geometry>
+<material name="r_wheel_material">
+<color rgba="0.76862745098039220171 0.88627450980392152857 0.95294117647058818044 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.046458225176851906946 -0.017590205607267157817 -0.0020162041513255334405" rpy="-1.8220221997822256777e-08 -3.3033261573682402758e-24 -4.1633363423443385057e-16" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/r_wheel.stl"/>
+</geometry>
+</collision>
+<visual>
+<origin xyz="0.046458225176851920823 0.077409794392732822477 -0.0020162058822466187233" rpy="-1.8220221997822263394e-08 -1.1272651491795689502e-25 -1.4571677198205186989e-16" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/l_wheel.stl"/>
+</geometry>
+<material name="l_wheel_material">
+<color rgba="0.76862745098039220171 0.88627450980392152857 0.95294117647058818044 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.046458225176851920823 0.077409794392732822477 -0.0020162058822466187233" rpy="-1.8220221997822263394e-08 -1.1272651491795689502e-25 -1.4571677198205186989e-16" />
+<geometry>
+<mesh filename="package://jumping_description/jumping/l_wheel.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.042153144016186215592 0.022446010125763707355 -0.0019396161188920603858" rpy="0 0 0"/>
+<mass value="0.35548577738424569361" />
+<inertia ixx="0.00057035997490628720114" ixy="3.4330234147639555474e-07"  ixz="2.6466414231481827111e-06" iyy="0.0004552826791115867312" iyz="-4.5774633745284428108e-09" izz="0.00073472655939739385696" />
+</inertial>
+</link>
+
+
+</robot>
