@@ -1,0 +1,122 @@
+<robot name="onshape">
+<link name="pinion">
+<visual>
+<origin xyz="0.030859585211130309557 0.0070837279844313850996 0.063465133309364318848" rpy="0 -0 1.5707963267948970021" />
+<geometry>
+<mesh filename="package:///pinion.stl"/>
+</geometry>
+<material name="pinion_material">
+<color rgba="0.98039215686274505668 0.71372549019607844922 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.030859585211130309557 0.0070837279844313850996 0.063465133309364318848" rpy="0 -0 1.5707963267948970021" />
+<geometry>
+<mesh filename="package:///pinion.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.025576295330118698629 0.027227122901850760173 0.067866033960370636402" rpy="0 0 0"/>
+<mass value="0.058169911184307740437" />
+<inertia ixx="0.00014734552126966966065" ixy="-2.6059766168328129178e-08"  ixz="2.7447541082826443859e-09" iyy="6.6357293350986895609e-06" iyz="2.4032931896589417603e-06" izz="0.00015241934951220158906" />
+</inertial>
+</link>
+
+<link name="body">
+<visual>
+<origin xyz="-3.4694469519536141888e-18 -0.020000000000000003886 -0.0050000000000000391354" rpy="-1.570796326794896558 -1.734723475976802164e-16 0" />
+<geometry>
+<mesh filename="package:///body.stl"/>
+</geometry>
+<material name="body_material">
+<color rgba="1 1 1 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-3.4694469519536141888e-18 -0.020000000000000003886 -0.0050000000000000391354" rpy="-1.570796326794896558 -1.734723475976802164e-16 0" />
+<geometry>
+<mesh filename="package:///body.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-6.0052755946892134908e-18 0 -0.0053307290731587830476" rpy="0 0 0"/>
+<mass value="0.15433075229575321519" />
+<inertia ixx="5.3788555523921135636e-05" ixy="0"  ixz="-6.3811424574783304935e-21" iyy="9.9475727210078185108e-05" iyz="0" izz="9.0573337339853982704e-05" />
+</inertial>
+</link>
+
+<link name="r_wheel">
+<visual>
+<origin xyz="0 0 -0.0099999999999999984734" rpy="1.570796326794896558 -9.8607613152626475676e-32 0" />
+<geometry>
+<mesh filename="package:///r_wheel.stl"/>
+</geometry>
+<material name="r_wheel_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 -0.0099999999999999984734" rpy="1.570796326794896558 -9.8607613152626475676e-32 0" />
+<geometry>
+<mesh filename="package:///r_wheel.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="3.9842420401781868378e-18 -3.6389410633627430746e-18 -0.01734237539674936962" rpy="0 0 0"/>
+<mass value="0.068512304069330884349" />
+<inertia ixx="5.5260767621856279712e-05" ixy="0"  ixz="-5.1712769616968996017e-36" iyy="5.5260767621856266159e-05" iyz="0" izz="0.00010770374637738819366" />
+</inertial>
+</link>
+
+<joint name="R_wheel" type="continuous">
+<origin xyz="-0.030000000000000012768 -1.3877787807814456755e-17 -0.0050000000000000460743" rpy="-3.141592653589793116 -1.570796326794896336 0" />
+<parent link="body" />
+<child link="r_wheel" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="0" upper="0"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="l_wheel">
+<visual>
+<origin xyz="-6.9388939039072283776e-18 0 -0.024999999999999994449" rpy="-1.570796326794896558 9.8607613152626475676e-32 0" />
+<geometry>
+<mesh filename="package:///l_wheel.stl"/>
+</geometry>
+<material name="l_wheel_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-6.9388939039072283776e-18 0 -0.024999999999999994449" rpy="-1.570796326794896558 9.8607613152626475676e-32 0" />
+<geometry>
+<mesh filename="package:///l_wheel.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-2.8484054093242898497e-18 5.0732681978268901206e-18 -0.017342375396749362682" rpy="0 0 0"/>
+<mass value="0.068512304069330884349" />
+<inertia ixx="5.5260767621856272936e-05" ixy="0"  ixz="5.1712769616969002699e-36" iyy="5.5260767621856272936e-05" iyz="0" izz="0.00010770374637738819366" />
+</inertial>
+</link>
+
+<joint name="L_wheel" type="continuous">
+<origin xyz="0.029999999999999967665 0 -0.0050000000000000321965" rpy="-0 -1.570796326794896336 0" />
+<parent link="body" />
+<child link="l_wheel" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="0" upper="0"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="Jump" type="prismatic">
+<origin xyz="0.025859585211130336341 -0.048460960012133978692 0.068465133309364323289" rpy="-1.570796326794896558 -0 4.8572257327350608504e-16" />
+<parent link="pinion" />
+<child link="body" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="0" upper="0.11999999999999999556"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+
+</robot>
