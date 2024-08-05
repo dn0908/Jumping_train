@@ -1,13 +1,28 @@
 import RPi.GPIO as IO
 import time
 
-encPinA = 23
-encPinB = 24
 
-IO.setmode(IO.BCM)
-IO.setwarnings(False)
-IO.setup(encPinA, IO.IN, pull_up_down=IO.PUD_UP)
-IO.setup(encPinB, IO.IN, pull_up_down=IO.PUD_UP)
+class Encoder:
+
+    def __init__(self):
+        
+        # PINS
+        self.left_A  = 23
+        self.left_B  = 24
+        self.right_A = 27
+        self.right_B = 22
+        
+        # INIT GPIOs
+        IO.setmode(IO.BCM)
+        IO.setwarnings(False)
+        IO.setup(self.left_A, IO.IN, pull_up_down=IO.PUD_UP)
+        IO.setup(self.left_B, IO.IN, pull_up_down=IO.PUD_UP)
+        IO.setup(self.right_A, IO.IN, pull_up_down=IO.PUD_UP)
+        IO.setup(self.right_B, IO.IN, pull_up_down=IO.PUD_UP)
+
+
+        global left_encoderPos
+        global right_encoderPos
 
 encoderPos = 0
 
@@ -31,4 +46,4 @@ IO.add_event_detect(encPinA, IO.BOTH, callback=encoderA)
 IO.add_event_detect(encPinB, IO.BOTH, callback=encoderB)
 
 while True:
-    time.sleep(0.5)
+    time.sleep(0.001)
