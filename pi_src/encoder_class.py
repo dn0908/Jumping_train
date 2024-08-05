@@ -1,49 +1,48 @@
 import RPi.GPIO as IO
 import time
 
-
 class Encoder:
-
-    def __init__(self):
+    def __init__(self, encPinA, encPinB, name):
+        self.encPinA = encPinA
+        self.encPinB = encPinB
+        self.encoderPos = 0
+        self.name = name
         
-        # PINS
-        self.left_A  = 23
-        self.left_B  = 24
-        self.right_A = 27
-        self.right_B = 22
+        IO.setup(self.encPinA, IO.IN, pull_up_down=IO.PUD_UP)
+        IO.setup(self.encPinB, IO.IN, pull_up_down=IO.PUD_UP)
         
-        # INIT GPIOs
-        IO.setmode(IO.BCM)
-        IO.setwarnings(False)
-        IO.setup(self.left_A, IO.IN, pull_up_down=IO.PUD_UP)
-        IO.setup(self.left_B, IO.IN, pull_up_down=IO.PUD_UP)
-        IO.setup(self.right_A, IO.IN, pull_up_down=IO.PUD_UP)
-        IO.setup(self.right_B, IO.IN, pull_up_down=IO.PUD_UP)
+        IO.add_event_detect(self.encPinA, IO.BOTH, callback=self.encoderA)
+        IO.add_event_detect(self.encPinB, IO.BOTH, callback=self.encoderB)
 
+    def encoderA(self, channel):
+        if IO.input(self.encPinA) == IO.input(self.encPinB):
+            self.encoderPos += 1
+        else:
+            self.encoderPos -= 1
+        print('Pin_A : %d, encoder %s : %d' % (channel, self.name, self.encoderPos))
 
-        global left_encoderPos
-        global right_encoderPos
+    def encoderB(self, channel):
+        if IO.input(self.encPinA) == IO.input(self.encPinB):
+            self.encoderPos -= 1
+        else:
+            self.encoderPos += 1
+        print('Pin_B : %d, encoder %s : %d' % (channel, self.name, self.encoderPos))
 
-encoderPos = 0
+    
 
-def encoderA(channel):
-    global encoderPos
-    if IO.input(encPinA) == IO.input(encPinB):
-        encoderPos += 1
-    else:
-        encoderPos -= 1
-        print('Pin_A : %d, encoder : %d' %(channel, encoderPos))
+if __name__ == "__main__":
+    encoder = Encoder()
 
-def encoderB(channel):
-    global encoderPos
-    if IO.input(encPinA) == IO.input(encPinB):
-        encoderPos -= 1
-    else:
-        encoderPos += 1
-        print('Pin_B : %d, encoder : %d' %(channel, encoderPos))
+    IO.setmode(IO.BCM)
+    IO.setwarnings(False)
 
-IO.add_event_detect(encPinA, IO.BOTH, callback=encoderA)
-IO.add_event_detect(encPinB, IO.BOTH, callback=encoderB)
+    motor1 = encoder(23, 24, "Motor1")
+    motor2 = encoder(27, 22, "Motor2")
 
-while True:
-    time.sleep(0.001)
+    try:
+        while True:
+            time.sleep(0.0001)
+    except KeyboardInterrupt:
+        print("Program stopped")
+    finally:
+        IO.cleanup()
