@@ -6,6 +6,9 @@ from encoder_class import Encoder
 
 class MotorController:
     def __init__(self, ix1, ix2, encoder):
+        IO.setmode(IO.BCM)
+        IO.setwarnings(False)
+
         self.ix1 = ix1
         self.ix2 = ix2
         self.encoder = encoder
@@ -13,8 +16,8 @@ class MotorController:
         IO.setup(self.ix1, IO.OUT)
         IO.setup(self.ix2, IO.OUT)
 
-        self.pwm1 = IO.PWM(self.ix1, 100)  # Set PWM frequency to 100 Hz
-        self.pwm2 = IO.PWM(self.ix2, 100)  # Set PWM frequency to 100 Hz
+        self.pwm1 = IO.PWM(self.ix1, 255)  # Set PWM frequency to 100 Hz
+        self.pwm2 = IO.PWM(self.ix2, 255)  # Set PWM frequency to 100 Hz
 
         self.pwm1.start(0)
         self.pwm2.start(0)
@@ -72,6 +75,12 @@ if __name__ == "__main__":
     IO.setmode(IO.BCM)
     IO.setwarnings(False)
 
+
+    IO.setup(12, IO.OUT)
+    IO.setup(18, IO.OUT)
+    IO.setup(13, IO.OUT)  
+    IO.setup(19, IO.OUT)
+
     encoder1 = Encoder(23, 24, "Motor1")
     encoder2 = Encoder(27, 22, "Motor2")
 
@@ -79,8 +88,8 @@ if __name__ == "__main__":
     motor2 = MotorController(13, 19, encoder2)  # IB1=13, IB2=19
 
     try:
-        motor1_thread = threading.Thread(target=motor1.move_to_position, args=(500,))
-        motor2_thread = threading.Thread(target=motor2.move_at_velocity, args=(100,))
+        motor1_thread = threading.Thread(target=motor1.move_to_position, args=(20,))
+        motor2_thread = threading.Thread(target=motor2.move_to_position, args=(100,))
         
         motor1_thread.start()
         motor2_thread.start()

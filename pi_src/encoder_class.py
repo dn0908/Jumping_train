@@ -3,6 +3,9 @@ import time
 
 class Encoder:
     def __init__(self, encPinA, encPinB, name):
+        IO.setmode(IO.BCM)
+        IO.setwarnings(False)
+
         self.encPinA = encPinA
         self.encPinB = encPinB
         self.encoderPos = 0
@@ -28,16 +31,22 @@ class Encoder:
             self.encoderPos += 1
         print('Pin_B : %d, encoder %s : %d' % (channel, self.name, self.encoderPos))
 
+    def get_position(self):
+        return self.encoderPos
+    
+    def reset_position(self):
+        self.encoderPos = 0
+
     
 
 if __name__ == "__main__":
-    encoder = Encoder()
+    # encoder = Encoder()
 
     IO.setmode(IO.BCM)
     IO.setwarnings(False)
 
-    motor1 = encoder(23, 24, "Motor1")
-    motor2 = encoder(27, 22, "Motor2")
+    motor1 = Encoder(23, 24, "Motor1")
+    motor2 = Encoder(27, 22, "Motor2")
 
     try:
         while True:
