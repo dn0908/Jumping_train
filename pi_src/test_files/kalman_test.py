@@ -11,11 +11,15 @@ address = 0x68
 bus = smbus.SMBus(1)
 imu = MPU9250.MPU9250(bus, address)
 imu.begin()
-# imu.caliberateAccelerometer()
-# print ("Acceleration calib successful")
-# imu.caliberateMag()
-# print ("Mag calib successful")
+imu.caliberateAccelerometer()
+print ("Acceleration calib successful")
+imu.caliberateGyro()
+print("Gyro calib successful")
+imu.caliberateMagPrecise()
+print ("Mag calib successful")
 
+imu.saveCalibDataToFile('calib_240808.json')
+print("Calibration Datat SAVED --- !")
 
 sensorfusion = kalman.Kalman()
 
